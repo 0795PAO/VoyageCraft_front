@@ -1,4 +1,5 @@
 import './index.css'
+import { Button } from "@/components/ui/button"
 
 function App() {
 
@@ -7,6 +8,8 @@ function App() {
       <h1 className="underline text-3xl font-bold">
       hola mundo
       </h1>
+      
+      <Button>Click me</Button>
 
     </>
   )
