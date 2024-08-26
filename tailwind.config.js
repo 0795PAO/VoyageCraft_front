@@ -13,7 +13,10 @@ module.exports = {
         background: 'hsl(var(--background))',   
         foreground: 'hsl(var(--foreground))',   
         border: 'hsl(var(--border))',           
-        // Puedes definir más colores aquí si es necesario
+        primary: "#00543C",  
+        secondary: "#FFDC27", 
+        black: "#000000",
+        white: "#FFFFFF",
       },
       borderRadius: {
         lg: 'var(--radius)',
