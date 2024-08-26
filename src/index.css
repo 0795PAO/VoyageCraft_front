@@ -61,9 +61,9 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border; /* Usando el color de borde definido en Tailwind */
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground; /* Usando los colores de fondo y texto definidos en Tailwind */
   }
 }
