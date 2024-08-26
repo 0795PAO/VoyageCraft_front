@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from '../../../assets/logo/logogreen.svg'; 
+import logo from '../../../assets/logo/logowhite.svg'; 
 
-const LogoGreen = ({ src = logo, alt = 'Voyage Craft Logo' }) => {
+const LogoWhite = ({ src = logo, alt = 'Voyage Craft Logo' }) => {
   return (
     <div className="max-w-sm mx-auto border-0 rounded-lg overflow-hidden shadow-none p-0">
       <img 
@@ -20,5 +20,4 @@ const LogoGreen = ({ src = logo, alt = 'Voyage Craft Logo' }) => {
   );
 };
 
-export default LogoGreen;
-
+export default LogoWhite;
