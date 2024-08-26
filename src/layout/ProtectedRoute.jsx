@@ -6,7 +6,7 @@ const ProtectedRoute = () => {
     if (isAuthenticated){
       return (
         <div>
-          {/*Navbar*/}
+          {/Navbar/}
           <Outlet/>
           {/* Footer */}
         </div>
