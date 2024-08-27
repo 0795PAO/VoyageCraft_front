@@ -1,12 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 function Login() {
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-50">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        
-
 
       <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-sm">
       <div className="bg-primary p-8 rounded-lg shadow-lg">
@@ -63,14 +60,12 @@ function Login() {
 
           <p className="mt-10 text-center text-sm text-white">
           Don't have an account?{' '}
-            <a href="#" className="font-semibold leading-6 text-secondary hover:text-yellow-500">
+            <Link to="/register" className="font-semibold leading-6 text-secondary hover:text-yellow-500">
               Sign up here
-            </a>
+            </Link>
           </p>
         </div>
         </div>
-      </div>
-    </div>
   );
 }
 
