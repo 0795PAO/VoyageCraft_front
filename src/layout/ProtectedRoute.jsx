@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react'
 
 const ProtectedRoute = () => {
 
+  const isAuthorized = true
+/*
   const [isAuthorized, setIsAuthorized] = useState(null);
 
   useEffect(() => {
@@ -52,8 +54,18 @@ const ProtectedRoute = () => {
   if (isAuthorized === null) {
     return <div>Loading...</div>;
   }
-
-  return isAuthorized ? <Outlet/>: <Navigate to="/login" />;
+*/
+  if (isAuthorized) {
+    return (
+      <>
+      <Navbar/>
+      <Outlet/>
+      {/*footer*/}
+      </>
+    )
+  } else{
+    return <Navigate to="/login" />;
+  };
 
 
 
