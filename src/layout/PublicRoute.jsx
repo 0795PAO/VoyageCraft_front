@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import LogoGreen from '@/components/logo/Logo'
 import LogoWhite from '@/components/logo/Logow';
 import Navbar from '@/components/navbar/Navbar';
