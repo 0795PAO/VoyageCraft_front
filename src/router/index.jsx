@@ -1,4 +1,6 @@
 import Login from "@/components/login/login";
+import FormateForm from "@/components/signUp/form/FormateForm";
+import SignUp from "@/components/signUp/signUp/SignUp";
 import ProtectedRoute from "@/layout/ProtectedRoute";
 import PublicRoute from "@/layout/PublicRoute";
 import { createBrowserRouter, Navigate } from "react-router-dom";
@@ -19,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element: {} /*este va a registro*/
+        element: <SignUp/> /*este va a registro*/
       },
     ],
   },
