@@ -8,8 +8,8 @@ import { useEffect, useState } from 'react'
 
 const ProtectedRoute = () => {
 
-  const isAuthorized = true
-/*
+  /*const isAuthorized = true*/
+
   const [isAuthorized, setIsAuthorized] = useState(null);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const ProtectedRoute = () => {
   if (isAuthorized === null) {
     return <div>Loading...</div>;
   }
-*/
+
   if (isAuthorized) {
     return (
       <>
