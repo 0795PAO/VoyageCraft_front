@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode"
 import api from '@/api'
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '@/constants'
 import { useEffect, useState } from 'react'
+import Footer from '@/components/footer/Footer'
 
 const ProtectedRoute = () => {
 
@@ -60,7 +61,7 @@ const ProtectedRoute = () => {
       <>
       <Navbar/>
       <Outlet/>
-      {/*footer*/}
+      <Footer/>
       </>
     )
   } else{
