@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "@/api";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants";
+import { LOGIN_URL } from "@/url";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -11,19 +14,11 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await fetch("https://url back/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await api.post(LOGIN_URL, {username, password});
 
-      if (response.ok) {
-        const data = await response.json();
-       
-        localStorage.setItem("token", data.token);
-       
+      if (response.status == 200) {
+        localStorage.setItem(ACCESS_TOKEN, response.data.access);
+        localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
         navigate("/home");
       } else {
         setError("Invalid username or password");
