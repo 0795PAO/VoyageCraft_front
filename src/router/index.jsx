@@ -4,6 +4,7 @@ import SignUp from "@/components/signUp/signUp/SignUp";
 import ProtectedRoute from "@/layout/ProtectedRoute";
 import PublicRoute from "@/layout/PublicRoute";
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import Home from "@/components/home/home";
 
 const router = createBrowserRouter([
   {
@@ -25,11 +26,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    elemnt: <ProtectedRoute/>,
+    element: <ProtectedRoute/>,
     children: [
       {
-        path: "/preferences",
-        element: {/* Preference formulariio*/ },
+        path: "/home",
+        element:  <Home/>
       },
       {
         path: "/destinations",
