@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LogoWhite from '@/components/logo/Logow';
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -8,10 +9,10 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-primary p-4">
-            <div className="container mx-auto flex items-center justify-between">
+        <nav className="bg-primary p-3">
+            <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                    <LogoWhite/>
+                    <LogoWhite />
                 </div>
                 <div className="block lg:hidden">
                     <button 
@@ -33,7 +34,7 @@ const Navbar = () => {
             <div className={`lg:hidden ${isOpen ? 'block' : 'hidden'} bg-primary mt-2`}>
                 <a href="#" className="block text-white px-4 py-2 hover:bg-blue-700 rounded">Itinerary</a>
                 <a href="#" className="block text-white px-4 py-2 hover:bg-blue-700 rounded">Help</a>
-                <a href="#" className="block text-white px-4 py-2 hover:bg-blue-700 rounded">Setting</a>
+                <a href="#" className="block text-white px-4 py-2 hover:bg-blue-700 rounded">Settings</a>
             </div>
         </nav>
     );
