@@ -4,6 +4,7 @@ import api from "@/api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants";
 import { LOGIN_URL } from "@/url";
 
+
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +15,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await api.post(LOGIN_URL, {username, password});
+      const response = await api.post(LOGIN_URL, { username, password });
 
       if (response.status == 200) {
         localStorage.setItem(ACCESS_TOKEN, response.data.access);
@@ -52,6 +53,7 @@ function Login() {
                 required
                 autoComplete="username"
                 className="block w-full rounded-md border-0 py-1.5 px-3 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary sm:text-sm sm:leading-6"
+                aria-label="Enter your username"
               />
             </div>
           </div>
@@ -72,16 +74,22 @@ function Login() {
                 required
                 autoComplete="current-password"
                 className="block w-full rounded-md border-0 py-1.5 px-3 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary sm:text-sm sm:leading-6"
+                aria-label="Enter your password"
               />
             </div>
           </div>
 
-          {error && <p className="text-secondary text-sm">{error}</p>}
+          {error && (
+            <p role="alert" className="text-secondary text-sm">
+              {error}
+            </p>
+          )}
 
           <div>
             <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-secondary px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+              aria-label="Sign in to your account"
             >
               Sign in
             </button>
@@ -90,7 +98,11 @@ function Login() {
 
         <p className="mt-10 text-center text-sm text-white">
           Don't have an account?{" "}
-          <a href="/register" className="font-semibold leading-6 text-secondary hover:text-yellow-500">
+          <a
+            href="/register"
+            className="font-semibold leading-6 text-secondary hover:text-yellow-500"
+            aria-label="Sign up for a new account"
+          >
             Sign up here
           </a>
         </p>
