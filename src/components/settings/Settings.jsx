@@ -19,6 +19,7 @@ const Settings = () => {
     });
 
     const [showModal, setShowModal] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -51,6 +52,8 @@ const Settings = () => {
 
     const handleConfirmDelete = () => {
         setShowModal(false);
+        setAlertMessage("Usuario eliminado"); // Configura el mensaje de alerta
+        setTimeout(() => setAlertMessage(""), 3000); // Oculta el mensaje después de 3 segundos
         console.log("User deleted");
     };
 
@@ -59,7 +62,13 @@ const Settings = () => {
     };
 
     return (
-        <div className="bg-white p-8 shadow-lg">
+        <div className="relative bg-white p-8 shadow-lg">
+            {alertMessage && (
+                <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white p-4 rounded-lg shadow-lg z-50">
+                    <p className="text-center text-lg font-semibold">{alertMessage}</p>
+                </div>
+            )}
+            
             <form onSubmit={handleSubmit}>
                 <div className="space-y-1">
                     <FormateForm
