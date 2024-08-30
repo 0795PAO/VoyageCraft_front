@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import FormateForm from "@/components/signUp/form/FormateForm"; // Asegúrate de que la ruta sea correcta
+import { useNavigate } from 'react-router-dom';
+import FormateForm from "@/components/signUp/form/FormateForm"; 
 
 const Settings = () => {
     const [formData, setFormData] = useState({
@@ -20,6 +21,8 @@ const Settings = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
+
+    const navigate = useNavigate(); 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -52,8 +55,11 @@ const Settings = () => {
 
     const handleConfirmDelete = () => {
         setShowModal(false);
-        setAlertMessage("Usuario eliminado"); // Configura el mensaje de alerta
-        setTimeout(() => setAlertMessage(""), 3000); // Oculta el mensaje después de 3 segundos
+        setAlertMessage("Usuario eliminado");
+        setTimeout(() => {
+            setAlertMessage("");
+            navigate('/login'); 
+        }, 3000);
         console.log("User deleted");
     };
 
@@ -148,7 +154,7 @@ const Settings = () => {
                 <div className="mt-6 flex items-center justify-end gap-x-6">
                     <button
                         type="submit"
-                        className="w-full justify-center bg-yellow-500  py-1.5"
+                        className="w-full justify-center bg-yellow-500 py-1.5"
                     >
                         Update
                     </button>
