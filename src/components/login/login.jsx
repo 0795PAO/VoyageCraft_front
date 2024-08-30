@@ -34,13 +34,13 @@ function Login() {
     <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-sm">
       <div className="bg-primary p-8 rounded-lg shadow-lg">
         <div className="text-center h-150">
-          <h2 className="mx-auto text-2xl font-bold leading-9 tracking-tight text-white">
+          <h2 className="mx-auto text-2xl font-bold leading-9 tracking-tight text-white" aria-label="Wellcome">
             Welcome!
           </h2>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
+            <label htmlFor="username" className="block text-sm font-medium leading-6 text-white" >
               Username
             </label>
             <div className="mt-2">
