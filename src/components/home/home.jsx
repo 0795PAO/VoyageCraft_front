@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { savePreferences } from '@/services/preferenceService';
+import { useNavigate } from 'react-router-dom';
+
 
 const Home = () => {
   const [formData, setFormData] = useState({
     climate: '',
     scenery: '',
     tourismType: '',
-    activities: '',
     tripDuration: '',
-    travelWith: '',
     budget: '',
     accessibility: '',
-    interests: '',
-    travelSeason: ''
+    familyFriendly: ''  
   });
+  const navigate = useNavigate()
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,16 +27,53 @@ const Home = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setLoading(true);
+    setError('');
+    setMessage('');
+
+    try {
+      const preferences = Object.keys(formData).map((key) => ({
+        preference_type: getPreferenceType(key),
+        preference_value: formData[key]
+      }));
+
+      await savePreferences(preferences);
+      console.log(preferences);
+      setMessage('Preferences saved successfully.');
+      setTimeout(() => {
+        navigate('/destinations');  
+        
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+      setError('An error occurred while saving preferences. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getPreferenceType = (key) => {
+    const mapping = {
+      climate: 'Preferred Climate',
+      scenery: 'Preferred Landscape/Scenery',
+      tourismType: 'Type of Tourism',
+      tripDuration: 'Travel Duration',
+      budget: 'Budget Preferences',
+      accessibility: 'Accessibility',
+      familyFriendly: 'Family-friendly' 
+    };
+    return mapping[key];
   };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
       <div className="bg-primary p-4 rounded-lg w-full max-w-sm mx-auto">
+        {error && <div className="text-red-500">{error}</div>}
+        {message && <div className="text-green-500">{message}</div>}
         <form className="space-y-4" onSubmit={handleSubmit}>
-          <label htmlFor="climate" className="block text-white text-sm font-bold mb-2">What type of climate do you prefer for your trips?</label>
+          <label htmlFor="climate" className="block text-white text-sm font-bold mb-2">Preferred Climate</label>
           <div className="relative">
             <select
               id="climate"
@@ -50,7 +92,7 @@ const Home = () => {
             </select>
           </div>
 
-          <label htmlFor="scenery" className="block text-white text-sm font-bold mb-2">What kind of scenery do you enjoy the most?</label>
+          <label htmlFor="scenery" className="block text-white text-sm font-bold mb-2">Preferred Scenery</label>
           <div className="relative">
             <select
               id="scenery"
@@ -69,7 +111,7 @@ const Home = () => {
             </select>
           </div>
 
-          <label htmlFor="tourismType" className="block text-white text-sm font-bold mb-2">What type of tourism do you prefer?</label>
+          <label htmlFor="tourismType" className="block text-white text-sm font-bold mb-2">Type of Tourism</label>
           <div className="relative">
             <select
               id="tourismType"
@@ -78,38 +120,17 @@ const Home = () => {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded bg-white text-black pr-10">
               <option value="">Select...</option>
-              <option value="Cultural">Cultural (Museums, historical sites)</option>
-              <option value="Adventure">Adventure (Hiking, extreme sports)</option>
-              <option value="Relaxation">Relaxation (Beaches, spas)</option>
-              <option value="Nature">Nature (National parks, wildlife)</option>
-              <option value="Nightlife">Nightlife (Bars, clubs)</option>
+              <option value="Cultural">Cultural</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Relaxation">Relaxation</option>
+              <option value="Nature">Nature</option>
+              <option value="Nightlife">Nightlife</option>
               <option value="Family-friendly">Family-friendly</option>
               <option value="Shopping">Shopping</option>
             </select>
           </div>
 
-          <label htmlFor="activities" className="block text-white text-sm font-bold mb-2">What activities are you most interested in during your travels?</label>
-          <div className="relative">
-            <select
-              id="activities"
-              name="activities"
-              value={formData.activities}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded bg-white text-black pr-10">
-              <option value="">Select...</option>
-              <option value="Hiking">Hiking</option>
-              <option value="Swimming">Swimming</option>
-              <option value="Sightseeing">Sightseeing</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Visiting museums">Visiting museums</option>
-              <option value="Attending local events or festivals">Attending local events or festivals</option>
-              <option value="Dining and culinary experiences">Dining and culinary experiences</option>
-              <option value="Water sports">Water sports (e.g., kayaking, snorkeling)</option>
-              <option value="Skiing/Snowboarding">Skiing/Snowboarding</option>
-            </select>
-          </div>
-
-          <label htmlFor="tripDuration" className="block text-white text-sm font-bold mb-2">How long do you typically like your trips to be?</label>
+          <label htmlFor="tripDuration" className="block text-white text-sm font-bold mb-2">Travel Duration</label>
           <div className="relative">
             <select
               id="tripDuration"
@@ -125,24 +146,7 @@ const Home = () => {
             </select>
           </div>
 
-          <label htmlFor="travelWith" className="block text-white text-sm font-bold mb-2">Who do you usually travel with?</label>
-          <div className="relative">
-            <select
-              id="travelWith"
-              name="travelWith"
-              value={formData.travelWith}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded bg-white text-black pr-10">
-              <option value="">Select...</option>
-              <option value="Solo">Solo</option>
-              <option value="Couple/Partner">Couple/Partner</option>
-              <option value="Family (with children)">Family (with children)</option>
-              <option value="Pets">Pets</option>
-              <option value="Friends">Friends</option>
-            </select>
-          </div>
-
-          <label htmlFor="budget" className="block text-white text-sm font-bold mb-2">What is your typical travel budget per day?</label>
+          <label htmlFor="budget" className="block text-white text-sm font-bold mb-2">Budget Preferences</label>
           <div className="relative">
             <select
               id="budget"
@@ -151,13 +155,13 @@ const Home = () => {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded bg-white text-black pr-10">
               <option value="">Select...</option>
-              <option value="Low">Low (Backpacking, hostels)</option>
-              <option value="Medium">Medium (Hotels, mid-range restaurants)</option>
-              <option value="High">High (Luxury hotels, fine dining)</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </div>
 
-          <label htmlFor="accessibility" className="block text-white text-sm font-bold mb-2">Do you have any accessibility needs or requirements?</label>
+          <label htmlFor="accessibility" className="block text-white text-sm font-bold mb-2">Accessibility Needs</label>
           <div className="relative">
             <select
               id="accessibility"
@@ -166,48 +170,29 @@ const Home = () => {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded bg-white text-black pr-10">
               <option value="">Select...</option>
-              <option value="Yes">Yes (Wheelchair accessible, etc.)</option>
+              <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
           </div>
 
-          <label htmlFor="interests" className="block text-white text-sm font-bold mb-2">Are there any specific interests or hobbies you would like to include in your travel plans?</label>
+          <label htmlFor="familyFriendly" className="block text-white text-sm font-bold mb-2">Family-Friendly</label>
           <div className="relative">
             <select
-              id="interests"
-              name="interests"
-              value={formData.interests}
+              id="familyFriendly"
+              name="familyFriendly"
+              value={formData.familyFriendly}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded bg-white text-black pr-10">
               <option value="">Select...</option>
-              <option value="Wine tasting">Wine tasting</option>
-              <option value="Photography">Photography</option>
-              <option value="Yoga/Wellness">Yoga/Wellness</option>
-              <option value="Local crafts/Artisan workshops">Local crafts/Artisan workshops</option>
-              <option value="Eco-tourism">Eco-tourism</option>
-              <option value="Historical exploration">Historical exploration</option>
-            </select>
-          </div>
-
-          <label htmlFor="travelSeason" className="block text-white text-sm font-bold mb-2">Do you have a preferred travel season or specific dates in mind?</label>
-          <div className="relative">
-            <select
-              id="travelSeason"
-              name="travelSeason"
-              value={formData.travelSeason}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded bg-white text-black pr-10">
-              <option value="">Select...</option>
-              <option value="Spring">Spring</option>
-              <option value="Summer">Summer</option>
-              <option value="Autumn">Autumn</option>
-              <option value="Winter">Winter</option>
-              <option value="Specific date range">Specific date range (free text)</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
             </select>
           </div>
 
           <div className="flex justify-center p-5">
-            <button type="submit" className="bg-yellow-500 text-black px-8 py-3 rounded">Next</button>
+            <button type="submit" className="bg-yellow-500 text-black px-8 py-3 rounded" disabled={loading}>
+              {loading ? 'Loading...' : 'Next'}
+            </button>
           </div>
         </form>
       </div>

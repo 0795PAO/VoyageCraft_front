@@ -1,10 +1,10 @@
 import Login from "@/components/login/login";
-import FormateForm from "@/components/signUp/form/FormateForm";
 import SignUp from "@/components/signUp/signUp/SignUp";
 import ProtectedRoute from "@/layout/ProtectedRoute";
 import PublicRoute from "@/layout/PublicRoute";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Home from "@/components/home/home";
+import DestinationPage from "@/pages/destinationPage";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/destinations",
-        element:{ /* destinations */}
+        element: <DestinationPage/>
     },
 
       
