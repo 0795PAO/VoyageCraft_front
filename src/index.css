@@ -67,3 +67,8 @@
     @apply bg-background text-foreground; /* Usando los colores de fondo y texto definidos en Tailwind */
   }
 }
+
+
+body {
+  font-family: 'Cagliostro', sans-serif;
+}
