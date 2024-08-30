@@ -13,13 +13,14 @@ const FormateForm = ({
   required = false,
   hint = "",
   value,
+  className,
   onChange,
   onBlur,
   showHint, // Nueva prop para mostrar el hint
 }) => {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium leading-6 text-white">
+      <label htmlFor={id} className= {`block text-sm font-medium leading-6 ${className}`}>
         {label}
       </label>
       <div className="mt-2">

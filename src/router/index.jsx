@@ -5,41 +5,41 @@ import ProtectedRoute from "@/layout/ProtectedRoute";
 import PublicRoute from "@/layout/PublicRoute";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Home from "@/components/home/home";
+import Settings from "@/components/settings/Settings";
 
 const router = createBrowserRouter([
   {
 
     element: <PublicRoute />,
     children: [
-        {
-            path: '/',
-            element: <Navigate to='/login' />
-        },
+      {
+        path: '/',
+        element: <Navigate to='/login' />
+      },
       {
         path: "/login",
         element: <Login />,
       },
       {
         path: "/register",
-        element: <SignUp/> /*este va a registro*/
+        element: <SignUp /> /*este va a registro*/
       },
     ],
   },
   {
-    element: <ProtectedRoute/>,
+    element: <ProtectedRoute />,
     children: [
       {
         path: "/home",
-        element:  <Home/>
+        element: <Home />
       },
       {
-        path: "/destinations",
-        element:{ /* destinations */}
-    },
-
-      
+        path: "/settings",
+        element: <Settings />
+      },
     ],
-}
+  }
+
 
 ]);
 

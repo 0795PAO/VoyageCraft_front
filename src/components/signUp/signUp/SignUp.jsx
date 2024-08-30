@@ -60,6 +60,7 @@ const SignUp = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             showHint={isTyping.firstName} 
+            className="text-white"
           />
 
           <FormateForm

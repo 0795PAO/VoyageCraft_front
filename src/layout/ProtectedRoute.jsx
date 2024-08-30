@@ -6,13 +6,15 @@ import api from '@/api'
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '@/constants'
 import { useEffect, useState } from 'react'
 import Footer from '@/components/footer/Footer'
+import SignUp from '@/components/signUp/signUp/SignUp'
+
 
 
 const ProtectedRoute = () => {
 
   const isAuthorized = true
 
-  /*const [isAuthorized, setIsAuthorized] = useState(null);
+ /* const [isAuthorized, setIsAuthorized] = useState(null);
 
   useEffect(() => {
     auth().catch(() => setIsAuthorized(false))
@@ -61,7 +63,7 @@ const ProtectedRoute = () => {
     return (
       <>
       <Navbar/>
-      <Outlet/>
+      <Outlet/> 
       <Footer/>
       </>
     )
