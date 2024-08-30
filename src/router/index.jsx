@@ -5,6 +5,7 @@ import ProtectedRoute from "@/layout/ProtectedRoute";
 import PublicRoute from "@/layout/PublicRoute";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Home from "@/components/home/home";
+import ItineraryCard from "@/components/itinerary/ItineraryCard";
 
 const router = createBrowserRouter([
   {
@@ -36,10 +37,12 @@ const router = createBrowserRouter([
         path: "/destinations",
         element:{ /* destinations */}
     },
-
-      
+    {
+      path: "/itinerary",
+      element:<ItineraryCard/>
+  },
     ],
-}
+  }
 
 ]);
 
