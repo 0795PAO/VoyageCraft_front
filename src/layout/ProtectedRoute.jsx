@@ -7,11 +7,12 @@ import { REFRESH_TOKEN, ACCESS_TOKEN } from '@/constants'
 import { useEffect, useState } from 'react'
 import Footer from '@/components/footer/Footer'
 
+
 const ProtectedRoute = () => {
 
-  /*const isAuthorized = true*/
+  const isAuthorized = true
 
-  const [isAuthorized, setIsAuthorized] = useState(null);
+  /*const [isAuthorized, setIsAuthorized] = useState(null);
 
   useEffect(() => {
     auth().catch(() => setIsAuthorized(false))
@@ -55,7 +56,7 @@ const ProtectedRoute = () => {
   if (isAuthorized === null) {
     return <div>Loading...</div>;
   }
-
+*/
   if (isAuthorized) {
     return (
       <>
