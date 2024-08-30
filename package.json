@@ -11,6 +11,9 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.0.1",
     "@radix-ui/react-slot": "^1.1.0",
     "axios": "^1.7.5",
     "class-variance-authority": "^0.7.0",

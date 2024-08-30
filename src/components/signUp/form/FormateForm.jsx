@@ -32,6 +32,7 @@ const FormateForm = ({
           minLength={minLength}
           placeholder={placeholder}
           className="px-3 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset placeholder:text-primary focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          aria-label="Sign up for a new account"
           value={value}
           onChange={onChange}
           onBlur={onBlur} // Manejar evento onBlur para detectar cuando deja de escribir
