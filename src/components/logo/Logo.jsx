@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 import logo from '../../../assets/logo/logogreen.svg'; 
 
 const LogoGreen = ({ src = logo, alt = 'Voyage Craft Logo' }) => {

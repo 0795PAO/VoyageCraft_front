@@ -5,7 +5,7 @@ import api from '@/api'
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '@/constants'
 import { useEffect, useState } from 'react'
 import Footer from '@/components/footer/Footer'
-import SignUp from '@/components/signUp/signUp/SignUp'
+
 
 
 
