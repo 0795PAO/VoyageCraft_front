@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "@/api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants";
 import { LOGIN_URL } from "@/url";
@@ -98,13 +98,13 @@ function Login() {
 
         <p className="mt-10 text-center text-sm text-white">
           Don't have an account?{" "}
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="font-semibold leading-6 text-secondary hover:text-yellow-500"
             aria-label="Sign up for a new account"
           >
             Sign up here
-          </a>
+          </Link>
         </p>
       </div>
     </div>
