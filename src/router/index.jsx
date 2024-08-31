@@ -11,22 +11,22 @@ const router = createBrowserRouter([
 
     element: <PublicRoute />,
     children: [
-        {
-            path: '/',
-            element: <Navigate to='/login' />
-        },
+      {
+        path: '/',
+        element: <Navigate to='/login' />
+      },
       {
         path: "/login",
         element: <Login />,
       },
       {
         path: "/register",
-        element: <SignUp/> /*este va a registro*/
+        element: <SignUp />
       },
     ],
   },
   {
-    element: <ProtectedRoute/>,
+    element: <ProtectedRoute />,
     children: [
       {
         path: "/home",
@@ -35,11 +35,12 @@ const router = createBrowserRouter([
       {
         path: "/destinations",
         element: <DestinationPage/>
-    },
+      },
 
       
     ],
-}
+  }
+
 
 ]);
 
