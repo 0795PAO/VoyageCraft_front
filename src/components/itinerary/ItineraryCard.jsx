@@ -1,43 +1,46 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import api from "@/api";
 
-// Componente ItineraryCard
-const ItineraryCard = ({ image, description, options = [] }) => {
+import { DESTINATION_URL } from "@/url"; 
+
+const ItineraryList = () => {
+  const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const response = await api.get(`${DESTINATION_URL}recommended-destinations/`); // Usa la URL completa aquí
+        setDestinations(response.data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDestinations();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
-    <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-      <div className="flex flex-col">
-        <img className="h-48 w-full object-cover" src={image} alt="Itinerary" />
-        <div className="p-4">
-          <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Itinerary</div>
-          <p className="mt-2 text-gray-500">{description}</p>
-          <ul className="mt-4 space-y-2">
-            {options.length > 0 ? (
-              options.map((option, index) => (
-                <li key={index} className="text-gray-700">
-                  {option}
-                </li>
-              ))
-            ) : (
-              <li className="text-gray-700">No options available</li>
-            )}
-          </ul>
-          <button className="mt-4 bg-orange-500 text-white py-2 px-4 rounded">Create Itinerary</button>
-        </div>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Recommended Destinations</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {destinations.map(destination => (
+          <ItineraryCard
+            key={destination.id}
+            image={destination.landscape} // Asume que 'landscape' es la URL de la imagen
+            description={destination.description}
+            options={destination.tourism_type ? [destination.tourism_type] : []}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-// Validaciones de PropTypes
-ItineraryCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string)
-};
-
-// Valores por defecto para las props
-ItineraryCard.defaultProps = {
-  options: []
-};
-
-export default ItineraryCard;
+export default ItineraryList;
