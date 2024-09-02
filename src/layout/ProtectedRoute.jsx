@@ -28,10 +28,10 @@ const ProtectedRoute = () => {
     try {
       const response = await api.get(`${DESTINATION_URL}recommended-destinations`);
       setDestinations(response.data);
-      setLoading(false);
+      setLoading(true);
     } catch (error) {
       console.error('Error fetching destinations:', error);
-      setLoading(false);
+      setLoading(true);
     }
   };
 
