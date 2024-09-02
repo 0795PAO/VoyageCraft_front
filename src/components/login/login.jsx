@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "@/api";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants";
-import { LOGIN_URL } from "@/url";
+import api from "../../api";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants";
+import { LOGIN_URL } from "../../url";
+import React from 'react';
 
 
 function Login() {
